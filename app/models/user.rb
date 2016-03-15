@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   require 'devise/orm/active_record'
   #config.orm = :active_record
 
+  has_many :posts
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 end
