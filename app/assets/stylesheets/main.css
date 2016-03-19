@@ -1,0 +1,41 @@
+body{
+  width: 100%;
+  margin: 0;
+}
+
+#wraper{
+  width: 1080px;
+  position: relative;
+  margin: auto;
+}
+
+#header_background{
+  width: 100%;
+  height: 50px;
+  background-color: hsl(5, 86%, 60%);
+  position: absolute;
+}
+
+#header{
+  width: 100%;
+  height: 50px;
+  background-color: hsl(5, 86%, 60%);
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+div#header_search{
+  display: inline-block;
+  margin-left: 20px;
+}
+
+div#header_search input{
+  border-radius: 5% / 25%;
+  border: 2px solid hsl(275, 9%, 47%);
+}
+
+div#header_user{
+  display: inline-block;
+  float: right;
+  margin-right: 20px;
+}

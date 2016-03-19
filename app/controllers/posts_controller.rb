@@ -1,11 +1,7 @@
 class PostsController < ApplicationController
 
-  #helper_method :current_user
-  #require 'Time'
-
   def index
-    post = Post.includes(:comments).all
-    render json: post, include: :comments
+    @posts = Post.order( created_at: :desc ).all
   end
 
   def new

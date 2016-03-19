@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RRRorTask</title>
+  <title>RR-RoR-Task</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div id='header_background'></div>
+
+<div id='wraper'>
+
+  <div id='header'>
+    <div id='header_search'>
+      <input type='text'></input>
+    </div>
+    <div id='header_user'>
+    <% if user_signed_in? %>
+      <a href="#"><%= current_user.name %> </a>
+      <a href="/users/sign_out/">sign out</a>
+    <% else %>
+      <a href="/users/sign_in/">sing in</a>
+    <% end %>
+    </div>
+  </div>
+
+  <%= yield %>
+
+</div>
+
 
 </body>
 </html>
