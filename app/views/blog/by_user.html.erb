@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag "build/main", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "build/by_user", "data-turbolinks-track" => true %>
 <% end %>
 
 <div id='posts_wraper'>
@@ -11,4 +11,4 @@
   </div>
 <% end %>
 </div>
-<button id='button_offset'>PageYOffset</button>
+<button id='button_offset' user_name='<%= @user.name %>' >PageYOffset</button>

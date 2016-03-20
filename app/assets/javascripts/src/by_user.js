@@ -1,19 +1,20 @@
-'use strict';
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function(){
   var posts_count = 0;
 
   var xhr = new XMLHttpRequest();
 
-  var load_posts = function load_posts() {
+  var load_posts = function(url){
     posts_count += 5;
-    xhr.open('Post', '/', true);
+    xhr.open('Post', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    var body = { 'count': posts_count };
+    var body = {
+      'user_name': document.getElementById('posts_wraper').getAttribute('user_name'),
+      'count': posts_count
+     };
     xhr.send(JSON.stringify(body));
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState != 4) return;
 
       if (xhr.status != 200) {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         var posts = JSON.parse(xhr.responseText);
 
-        posts.forEach(function (post) {
+        posts.forEach(function(post) {
           var newPost = document.createElement('div');
 
           var userName = document.createElement('h2');
@@ -38,14 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
           var posts_wraper = document.getElementById('posts_wraper');
           posts_wraper.appendChild(newPost);
-        });
+        })
       }
-    };
+    }
   };
   //load_posts();
 
   var button_offset = document.getElementById('button_offset');
-  button_offset.addEventListener('click', function () {
-    load_posts();
+  button_offset.addEventListener('click', function(){
+    load_posts(window.location.href);
   });
+
 });

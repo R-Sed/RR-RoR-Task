@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var xhr = new XMLHttpRequest();
 
-  var load_posts = function load_posts() {
+  var load_posts = function load_posts(url) {
     posts_count += 5;
-    xhr.open('Post', '/', true);
+    xhr.open('Post', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     var body = { 'count': posts_count };
@@ -46,6 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var button_offset = document.getElementById('button_offset');
   button_offset.addEventListener('click', function () {
-    load_posts();
+    load_posts('');
   });
 });

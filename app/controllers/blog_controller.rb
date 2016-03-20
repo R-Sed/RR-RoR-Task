@@ -9,7 +9,21 @@ class BlogController < ApplicationController
   end
 
   def show
-    render json: { responseText: 'haha once again' }
+    posts = Post.includes(:user).order( created_at: :desc ).limit(5).offset(params[:count])
+    render json: posts, include: :user
+  end
+
+  def by_user
+    @user = User.find_by(name: params[:user_name])
+    @posts = Post.includes(:user).order( created_at: :desc )
+    .where(user_id: @user.id).limit(5)
+  end
+
+  def show_by_user
+    user = User.find_by(name: params[:user_name])
+    posts = Post.includes(:user).order( created_at: :desc )
+    .where(user_id: user.id).limit(5).offset(params[:count])
+    render json:  posts, include: :user
   end
 
 end

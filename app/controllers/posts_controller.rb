@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.order( created_at: :desc ).all
+    @posts = Post.order( created_at: :desc ).includes(:user).all
+    render json: @posts, include: :user
   end
 
   def new
