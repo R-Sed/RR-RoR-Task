@@ -1,7 +1,6 @@
 <% content_for :head do %>
-  <script src='/javascripts/biuld/main.js'></script>
+  <%= javascript_include_tag "build/main", "data-turbolinks-track" => true %>
 <% end %>
-
 
 <% @posts.each do |post, n| %>
   <div>
