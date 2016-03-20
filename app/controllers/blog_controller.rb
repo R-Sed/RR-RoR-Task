@@ -10,7 +10,7 @@ class BlogController < ApplicationController
 
   def show
     posts = Post.includes(:user).order( created_at: :desc ).limit(5).offset(params[:count])
-    render json: posts, include: :user
+    render json: posts, include: :user, except: :text
   end
 
   def by_user
@@ -23,7 +23,12 @@ class BlogController < ApplicationController
     user = User.find_by(name: params[:user_name])
     posts = Post.includes(:user).order( created_at: :desc )
     .where(user_id: user.id).limit(5).offset(params[:count])
-    render json:  posts, include: :user
+    render json:  posts, include: :user, except: :text
+  end
+
+  def show_post
+    user = User.find_by(name: params[:user_name])
+    @post = Post.includes(:user).where(user_id: user.id).find(params[:post_id])
   end
 
 end

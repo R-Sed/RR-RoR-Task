@@ -5,9 +5,8 @@
 <div id='posts_wraper'>
 <% @posts.each do |post, n| %>
   <div>
-    <h2><%= post.user.name %><h2>
-    <h3><%= post.title %></h3>
-    <p><%= post.text %></p>
+    <a href="<%= '/users/' +  post.user.name %>" ><h2><%= post.user.name %><h2><a>
+    <a href="<%= '/users/' + post.user.name + '/' + post.id.to_s %>"><h3><%= post.title %></h3><a>
   </div>
 <% end %>
 </div>

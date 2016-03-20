@@ -1,3 +1,12 @@
+html{
+  font-size: 16px;
+}
+
+h3{
+  font-size: 1.17rem;
+}
+
+
 body{
   width: 100%;
   margin: 0;

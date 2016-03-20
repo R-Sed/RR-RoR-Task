@@ -1,0 +1,3 @@
+<a href="<%= '/users/' +  @post.user.name %>" ><h2><%= @post.user.name %><h2><a>
+<a href="<%= '/users/' + @post.user.name + '/' + @post.id.to_s %>"><h3><%= @post.title %></h3><a>
+<div><%= @post.text %></div>

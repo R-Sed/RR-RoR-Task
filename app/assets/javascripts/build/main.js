@@ -1,16 +1,14 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
-  var posts_count = 0;
 
-  var xhr = new XMLHttpRequest();
-
-  var load_posts = function load_posts() {
+  var load_posts = function load_posts(url, body) {
     posts_count += 5;
-    xhr.open('Post', '/', true);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('Post', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    var body = { 'count': posts_count };
     xhr.send(JSON.stringify(body));
 
     xhr.onreadystatechange = function () {
@@ -24,17 +22,19 @@ document.addEventListener('DOMContentLoaded', function () {
         posts.forEach(function (post) {
           var newPost = document.createElement('div');
 
+          var userNameLink = document.createElement('a');
+          userNameLink.setAttribute('href', '/users/' + post['user']['name']);
           var userName = document.createElement('h2');
           userName.innerHTML = post['user']['name'];
-          newPost.appendChild(userName);
+          userNameLink.appendChild(userName);
+          newPost.appendChild(userNameLink);
 
+          var postLink = document.createElement('a');
+          postLink.setAttribute('href', '/users/' + post['user']['name'] + '/' + post['id']);
           var postTitle = document.createElement('h3');
           postTitle.innerHTML = post['title'];
-          newPost.appendChild(postTitle);
-
-          var postText = document.createElement('p');
-          postText.innerHTML = post['text'];
-          newPost.appendChild(postText);
+          postLink.appendChild(postTitle);
+          newPost.appendChild(postLink);
 
           var posts_wraper = document.getElementById('posts_wraper');
           posts_wraper.appendChild(newPost);
@@ -44,8 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   //load_posts();
 
+  var posts_count = 0;
+
   var button_offset = document.getElementById('button_offset');
   button_offset.addEventListener('click', function () {
-    load_posts();
+    posts_count += 5;
+    var body = { 'count': posts_count };
+    load_posts('/', body);
   });
 });
