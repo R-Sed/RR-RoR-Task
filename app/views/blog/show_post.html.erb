@@ -1,15 +1,25 @@
-<div class='post'>
-  <a href="<%= '/users/' +  @post.user.name %>" ><h2><%= @post.user.name %><h2><a>
-  <a href="<%= '/users/' + @post.user.name + '/' + @post.id.to_s %>"><h3><%= @post.title %></h3><a>
-  <div><%= @post.text %></div>
+<div id='show_post_container'>
+  <div class='post' post_id="<%= @post.id %>" id='post'>
+    <a href="<%= '/users/' +  @post.user.name %>" ><h2><%= @post.user.name %><h2><a>
+    <a href="<%= '/users/' + @post.user.name + '/' + @post.id.to_s %>"><h3><%= @post.title %></h3><a>
+    <div><%= @post.text %></div>
+  </div>
+  <div id='comment_box'>
+    <h2>Comments</h2>
+    <% if user_signed_in? %>
+      <form id='comment_form'>
+        <textarea id='text'></textarea> <br>
+        <button id='submit_comment'>Submit</button>
+      </form>
+    <% else %>
+      <h3>Only authenticated users can left comments<h3>
+    <% end %>
+    <% @post.comments.each do |comment| %>
+      <div class='comment'>
+        <h2><%= comment.user.name %></h2>
+        <h3><%= comment.text %></h3>
+      </div>
+    <% end %>
+  </div>
+  post id - <%= @post.id %>
 </div>
-<div id='comment_box'>
-  <h2>Comments</h2>
-  <% @post.comments.each do |comment| %>
-    <div class='comment'>
-      <h2><%= comment.user.name %></h2>
-      <h3><%= comment.text %></h3>
-    </div>
-  <% end %>
-</div>
-post id - <%= @post.id %>

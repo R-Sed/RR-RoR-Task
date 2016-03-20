@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
 
   var load_posts = function(url, body){
-    posts_count += 5;
 
     var xhr = new XMLHttpRequest();
     xhr.open('Post', url, true);
@@ -44,13 +43,62 @@ document.addEventListener('DOMContentLoaded', function(){
   };
   //load_posts();
 
-  var posts_count = 0;
 
-  var button_offset = document.getElementById('button_offset');
-  button_offset.addEventListener('click', function(){
-    posts_count += 5;
-    var body = { 'count': posts_count };
-    load_posts('/', body);
-  });
+  if (document.getElementById('main_container')){
+    var posts_count = 0;
+
+    var button_offset = document.getElementById('button_offset');
+    button_offset.addEventListener('click', function(){
+      posts_count += 5;
+      var body = { 'count': posts_count };
+      load_posts('/', body);
+    });
+  }
+
+  if (document.getElementById('by_user_container'))
+  {
+    var posts_count = 0;
+
+    var button_offset = document.getElementById('button_offset');
+    button_offset.addEventListener('click', function(){
+      posts_count += 5;
+      var body = {
+        'user_name': document.getElementById('posts_wraper').getAttribute('user_name'),
+        'count': posts_count
+       };
+      load_posts(window.location.href, body);
+    });
+  }
+
+  if (document.getElementById('comment_form')){
+    var submit_button = document.getElementById('submit_comment');
+    submit_button.addEventListener('click', function(event){
+      event.preventDefault();
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('Post', '/comments', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      var body = {
+        'comment': {
+            'text': document.getElementById('text').value,
+            'post_id': document.getElementById('post').getAttribute('post_id')
+         }
+      };
+      xhr.send(JSON.stringify(body));
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status != 200) {
+          alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+          document.getElementById('text').value = '';
+        }
+      };
+    });
+
+  }
 
 });

@@ -1,7 +1,6 @@
-<% content_for :head do %>
-  <%= javascript_include_tag "build/main", "data-turbolinks-track" => true %>
-<% end %>
 
-<%= render 'posts_wraper' %>
+<div id='main_container'>
+  <%= render 'posts_wraper' %>
 
-<button id='button_offset'>PageYOffset</button>
+  <button id='button_offset'>PageYOffset</button>
+</div>
