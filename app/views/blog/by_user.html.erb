@@ -2,12 +2,6 @@
   <%= javascript_include_tag "build/by_user", "data-turbolinks-track" => true %>
 <% end %>
 
-<div id='posts_wraper'>
-<% @posts.each do |post, n| %>
-  <div>
-    <a href="<%= '/users/' +  post.user.name %>" ><h2><%= post.user.name %><h2><a>
-    <a href="<%= '/users/' + post.user.name + '/' + post.id.to_s %>"><h3><%= post.title %></h3><a>
-  </div>
-<% end %>
-</div>
+<%= render 'posts_wraper' %>
+
 <button id='button_offset' user_name='<%= @user.name %>' >PageYOffset</button>

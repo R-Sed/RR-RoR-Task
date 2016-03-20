@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
         posts.forEach(function(post) {
           var newPost = document.createElement('div');
+          newPost.setAttribute('class', 'post');
+
 
           var userNameLink = document.createElement('a');
           userNameLink.setAttribute('href', '/users/' + post['user']['name']);

@@ -1,3 +1,15 @@
-<a href="<%= '/users/' +  @post.user.name %>" ><h2><%= @post.user.name %><h2><a>
-<a href="<%= '/users/' + @post.user.name + '/' + @post.id.to_s %>"><h3><%= @post.title %></h3><a>
-<div><%= @post.text %></div>
+<div class='post'>
+  <a href="<%= '/users/' +  @post.user.name %>" ><h2><%= @post.user.name %><h2><a>
+  <a href="<%= '/users/' + @post.user.name + '/' + @post.id.to_s %>"><h3><%= @post.title %></h3><a>
+  <div><%= @post.text %></div>
+</div>
+<div id='comment_box'>
+  <h2>Comments</h2>
+  <% @post.comments.each do |comment| %>
+    <div class='comment'>
+      <h2><%= comment.user.name %></h2>
+      <h3><%= comment.text %></h3>
+    </div>
+  <% end %>
+</div>
+post id - <%= @post.id %>

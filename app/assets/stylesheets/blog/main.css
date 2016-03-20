@@ -2,8 +2,12 @@ html{
   font-size: 16px;
 }
 
+h2{
+  font-size: 1.35rem;
+}
+
 h3{
-  font-size: 1.17rem;
+  font-size: 1.2rem;
 }
 
 
@@ -47,4 +51,26 @@ div#header_user{
   display: inline-block;
   float: right;
   margin-right: 20px;
+}
+
+div.post{
+  margin: 50px 0 50px 0;
+}
+
+div.post h3{
+  display: inline-block;
+  margin: 10px 0 10px 10px;
+}
+
+div.post div{
+  margin: 10px 0 10px 10px;
+}
+
+div.comment{
+  margin: 20px 0 20px 0;
+}
+
+div.comment h3{
+  display: inline-block;
+  margin: 10px 0 10px 10px;
 }

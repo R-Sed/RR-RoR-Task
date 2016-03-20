@@ -28,7 +28,7 @@ class BlogController < ApplicationController
 
   def show_post
     user = User.find_by(name: params[:user_name])
-    @post = Post.includes(:user).where(user_id: user.id).find(params[:post_id])
+    @post = Post.includes(:user, :comments).where(user_id: user.id).find(params[:post_id])
   end
 
 end
