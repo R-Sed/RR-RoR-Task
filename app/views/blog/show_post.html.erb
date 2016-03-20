@@ -14,7 +14,7 @@
     <% else %>
       <h3>Only authenticated users can left comments<h3>
     <% end %>
-    <% @post.comments.each do |comment| %>
+    <% @post.comments.order( created_at: :desc ).each do |comment| %>
       <div class='comment'>
         <h2><%= comment.user.name %></h2>
         <h3><%= comment.text %></h3>
