@@ -15,11 +15,12 @@
 
   <div id='header'>
     <div id='header_search'>
-      <input type='text'></input>
+      <input type='text' id='search_field'></input>
+      <button id='search_button'>Search</button>
     </div>
     <div id='header_user'>
     <% if user_signed_in? %>
-      <a href="#"><%= current_user.name %> </a>
+      <a href="<%= '/users/' + current_user.name %>"><%= current_user.name %> </a>
       <a href="/users/sign_out/">sign out</a>
     <% else %>
       <a href="/users/sign_in/">sing in</a>
@@ -27,8 +28,9 @@
     </div>
   </div>
 
-  <%= yield %>
-
+  <div id='body'>
+    <%= yield %>
+  </div>
 </div>
 
 

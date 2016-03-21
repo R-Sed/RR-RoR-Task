@@ -1,9 +1,7 @@
 <div id='by_user_container'>
-  <% content_for :head do %>
-    <%= javascript_include_tag "build/by_user", "data-turbolinks-track" => true %>
-  <% end %>
 
   <%= render 'posts_wraper' %>
 
   <button id='button_offset' user_name='<%= @user.name %>' >PageYOffset</button>
+
 </div>

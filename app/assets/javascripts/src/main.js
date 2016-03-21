@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-
   var load_posts = function(url, body){
 
     var xhr = new XMLHttpRequest();
@@ -55,8 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  if (document.getElementById('by_user_container'))
-  {
+  if (document.getElementById('by_user_container')){
     var posts_count = 0;
 
     var button_offset = document.getElementById('button_offset');
@@ -98,7 +96,61 @@ document.addEventListener('DOMContentLoaded', function(){
         }
       };
     });
-
   }
 
+  var search_button = document.getElementById('search_button');
+  search_button.addEventListener('click', function(){
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('Post', '/search', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    var body = {
+      'key': document.getElementById('search_field').value
+    }
+
+    xhr.send(JSON.stringify(body));
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState != 4) return;
+
+      if (xhr.status != 200) {
+        alert(xhr.status + ': ' + xhr.statusText);
+      } else {
+        var posts = JSON.parse(xhr.responseText);
+
+        var body_div = document.getElementById('body');
+        while (body_div.firstChild) {
+            body_div.removeChild(body_div.firstChild);
+        }
+
+        var posts_wraper = document.createElement('div');
+        posts_wraper.setAttribute('id', 'posts_wraper');
+        body_div.appendChild(posts_wraper);
+
+        posts.forEach(function(post) {
+          var newPost = document.createElement('div');
+          newPost.setAttribute('class', 'post');
+
+
+          var userNameLink = document.createElement('a');
+          userNameLink.setAttribute('href', '/users/' + post['user']['name']);
+          var userName = document.createElement('h2');
+          userName.innerHTML = post['user']['name'];
+          userNameLink.appendChild(userName);
+          newPost.appendChild(userNameLink);
+
+          var postLink = document.createElement('a');
+          postLink.setAttribute('href', '/users/' + post['user']['name'] + '/' + post['id']);
+          var postTitle = document.createElement('h3');
+          postTitle.innerHTML = post['title'];
+          postLink.appendChild(postTitle);
+          newPost.appendChild(postLink);
+
+          var posts_wraper = document.getElementById('posts_wraper');
+          posts_wraper.appendChild(newPost);
+        })
+      }
+    }
+
+  });
 });

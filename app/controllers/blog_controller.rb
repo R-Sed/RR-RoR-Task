@@ -31,4 +31,12 @@ class BlogController < ApplicationController
     @post = Post.includes(:user, :comments).where(user_id: user.id).find(params[:post_id])
   end
 
+  def search
+    @posts = Post.includes(:user).where("title LIKE ? or text LIKE ?", '%' + params[:key] + '%', '%' + params[:key] + '%')
+    .order(created_at: :desc)
+    puts '--------->'
+    puts @posts.length
+    render json: @posts, include: :user
+  end
+
 end

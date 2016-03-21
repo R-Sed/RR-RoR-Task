@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post '/users/:user_name' => 'blog#show_by_user'
 
   get '/users/:user_name/:post_id' => 'blog#show_post'
+
+  post '/search' => 'blog#search'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
