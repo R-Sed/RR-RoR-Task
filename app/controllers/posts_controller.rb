@@ -1,11 +1,8 @@
 class PostsController < ApplicationController
 
-  #helper_method :current_user
-  #require 'Time'
-
   def index
-    post = Post.includes(:comments).all
-    render json: post, include: :comments
+    @posts = Post.order( created_at: :desc ).includes(:user).all
+    render json: @posts, include: :user
   end
 
   def new
@@ -27,6 +24,7 @@ class PostsController < ApplicationController
     else
       render text: "invalid params"
     end
+    redirect_to "/users/" + current_user.name
   end
 
 end
