@@ -1,7 +1,25 @@
 <div id='by_user_container'>
 
+  <% if user_signed_in? and (current_user.name == @user.name) %>
+    <%= form_for :post, url: '/posts' do |f| %>
+      <p>
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+      </p>
+
+      <p>
+        <%= f.label :text %><br>
+        <%= f.text_area :text %>
+      </p>
+
+      <p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+  <% end %>
+
   <%= render 'posts_wraper' %>
 
-  <button id='button_offset' user_name='<%= @user.name %>' >PageYOffset</button>
+  <button id='load_more' user_name='<%= @user.name %>' >Load more</button>
 
 </div>

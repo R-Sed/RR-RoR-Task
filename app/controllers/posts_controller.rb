@@ -24,6 +24,7 @@ class PostsController < ApplicationController
     else
       render text: "invalid params"
     end
+    redirect_to "/users/" + current_user.name
   end
 
 end

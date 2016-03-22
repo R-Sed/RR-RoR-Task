@@ -19,6 +19,7 @@
       <button id='search_button'>Search</button>
     </div>
     <div id='header_user'>
+      <a href="/">main</a>
     <% if user_signed_in? %>
       <a href="<%= '/users/' + current_user.name %>"><%= current_user.name %> </a>
       <a href="/users/sign_out/">sign out</a>

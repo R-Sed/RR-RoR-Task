@@ -1,6 +1,6 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('page:change', function () {
   var load_posts = function load_posts(url, body) {
 
     var xhr = new XMLHttpRequest();
@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('main_container')) {
     var posts_count = 0;
 
-    var button_offset = document.getElementById('button_offset');
-    button_offset.addEventListener('click', function () {
+    var load_more = document.getElementById('load_more');
+    load_more.addEventListener('click', function () {
       posts_count += 5;
       var body = { 'count': posts_count };
       load_posts('/', body);
@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('by_user_container')) {
     var posts_count = 0;
 
-    var button_offset = document.getElementById('button_offset');
-    button_offset.addEventListener('click', function () {
+    var load_more = document.getElementById('load_more');
+    load_more.addEventListener('click', function () {
       posts_count += 5;
       var body = {
         'user_name': document.getElementById('posts_wraper').getAttribute('user_name'),
