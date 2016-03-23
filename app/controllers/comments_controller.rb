@@ -4,20 +4,6 @@ class CommentsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
-
-  def index
-    comment = Comment.all
-    render json: comment
-  end
-
-  def new
-    if user_signed_in?
-      render :new
-    else
-      redirect_to '/users/sign_in'
-    end
-  end
-
   def create
     @comment = Comment.new(
       text: params[:comment][:text],
@@ -26,6 +12,7 @@ class CommentsController < ApplicationController
       )
     if @comment.valid?
       @comment.save
+      render nothing: true
     else
       render text: "invalid params"
     end
