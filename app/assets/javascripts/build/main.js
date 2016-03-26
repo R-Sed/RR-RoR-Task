@@ -21,19 +21,25 @@ document.addEventListener('page:change', function () {
           var newPost = document.createElement('div');
           newPost.setAttribute('class', 'post');
 
+          var divForUserNameLink = document.createElement('div');
+
           var userNameLink = document.createElement('a');
           userNameLink.setAttribute('href', '/users/' + post['user']['name']);
           var userName = document.createElement('h2');
           userName.innerHTML = post['user']['name'];
           userNameLink.appendChild(userName);
-          newPost.appendChild(userNameLink);
+          divForUserNameLink.appendChild(userNameLink);
+          newPost.appendChild(divForUserNameLink);
+
+          var divForPostLink = document.createElement('div');
 
           var postLink = document.createElement('a');
           postLink.setAttribute('href', '/users/' + post['user']['name'] + '/' + post['id']);
           var postTitle = document.createElement('h3');
           postTitle.innerHTML = post['title'];
           postLink.appendChild(postTitle);
-          newPost.appendChild(postLink);
+          divForPostLink.appendChild(postLink);
+          newPost.appendChild(divForPostLink);
 
           var posts_wraper = document.getElementById('posts_wraper');
           posts_wraper.appendChild(newPost);
@@ -131,19 +137,25 @@ document.addEventListener('page:change', function () {
           var newPost = document.createElement('div');
           newPost.setAttribute('class', 'post');
 
+          var divForUserNameLink = document.createElement('div');
+
           var userNameLink = document.createElement('a');
           userNameLink.setAttribute('href', '/users/' + post['user']['name']);
           var userName = document.createElement('h2');
           userName.innerHTML = post['user']['name'];
           userNameLink.appendChild(userName);
-          newPost.appendChild(userNameLink);
+          divForUserNameLink.appendChild(userNameLink);
+          newPost.appendChild(divForUserNameLink);
+
+          var divForPostLink = document.createElement('div');
 
           var postLink = document.createElement('a');
           postLink.setAttribute('href', '/users/' + post['user']['name'] + '/' + post['id']);
           var postTitle = document.createElement('h3');
           postTitle.innerHTML = post['title'];
           postLink.appendChild(postTitle);
-          newPost.appendChild(postLink);
+          divForPostLink.appendChild(postLink);
+          newPost.appendChild(divForPostLink);
 
           var posts_wraper = document.getElementById('posts_wraper');
           posts_wraper.appendChild(newPost);
