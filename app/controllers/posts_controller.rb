@@ -46,8 +46,6 @@ class PostsController < ApplicationController
   def search
     @posts = Post.includes(:user).where("title LIKE ? or text LIKE ?", '%' + params[:key] + '%', '%' + params[:key] + '%')
     .order(created_at: :desc)
-    puts '--------->'
-    puts @posts.length
     render json: @posts, include: :user
   end
 
