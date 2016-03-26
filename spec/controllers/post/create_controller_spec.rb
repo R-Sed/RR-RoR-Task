@@ -5,9 +5,9 @@ RSpec.describe PostsController, type: :controller do
     before(:all) do
       @user = create(:user)
     end
+
     before do
       sign_in User.first
-      puts User.first.name
       headers = {
         "ACCEPT" => "application/json",
       }
