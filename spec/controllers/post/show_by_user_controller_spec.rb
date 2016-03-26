@@ -21,12 +21,12 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it 'posts belong to User_1' do
-      post_owners_are = []
+      actual_owners = []
       5.times do |n|
-        post_owners_are[n] = JSON.parse(response.body)[n]['user']['name']
+        actual_owners[n] = JSON.parse(response.body)[n]['user']['name']
       end
-      post_owners__should_be = Array.new(5, 'User_1')
-      expect(post_owners_are).to eq(post_owners__should_be)
+      expected_owners = Array.new(5, 'User_1')
+      expect(actual_owners).to eq(expected_owners)
     end
   end
 end
