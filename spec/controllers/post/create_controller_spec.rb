@@ -6,7 +6,7 @@ RSpec.describe PostsController, type: :controller do
       user = create(:user)
       sign_in User.first
       headers = {
-        "ACCEPT" => "application/json",     # This is what Rails 4 accepts
+        "ACCEPT" => "application/json",
       }
       post :create, { post: { title: 'rspec', text: 'this is the test' }}, headers
       @new_post = Post.first
