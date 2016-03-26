@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
   describe "POST #create" do
+    before(:all) do
+      @user = create(:user)
+    end
     before do
-      user = create(:user)
       sign_in User.first
+      puts User.first.name
       headers = {
         "ACCEPT" => "application/json",
       }

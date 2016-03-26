@@ -32,13 +32,30 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
-  config.use_transactional_fixtures = true
 
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  config.before(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+
+    FactoryGirl.reload
+  end
+
+
+  # config.before(:each, :js => true) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
+
+
+  config.after(:all) do
+    DatabaseCleaner.clean
+  end
 
 
   # RSpec Rails can automatically mix in different behaviours to your tests
